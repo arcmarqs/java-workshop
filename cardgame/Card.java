@@ -1,5 +1,6 @@
 // Inspired by the example from the book "Think Java"
 
+// enums are a special type of class that defines a group of constants.
 enum Suit{
         SPADES,
         CLUBS,
@@ -7,19 +8,24 @@ enum Suit{
         DIAMONDS
 }
 
+// this class represents a playable card, with a suit and a rank, which is the number of the card.
 class Card {
     /* 
-        The cards are encoded as follows: 
+        The card ranks are encoded as follows: 
         Ace -> 1
         2..10 -> 2..10
         Jack -> 11
         Queen -> 12
         King -> 13
     */    
+    
+    // Static Final means this is a constant array that is shared by all objects of this type.
+
     public static final String[] RANKS = {null,"Ace","2","3","4","5","6","7","8","9", "10", "Jack", "Queen","King"};
     int cardrank;
     Suit suit; 
 
+    // card constuctor
     public Card(int cardrank, Suit suit) {
         this.cardrank = cardrank;
         this.suit = suit;
@@ -32,6 +38,7 @@ class Card {
     public Suit getSuit() { 
         return this.suit;
     }
+
 
     private String decodeCard() {
         return RANKS[this.cardrank];
