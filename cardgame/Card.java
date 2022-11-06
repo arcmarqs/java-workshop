@@ -39,9 +39,9 @@ class Card {
         return this.suit;
     }
 
-
+    // private methods can't be called by other classes.
     private String decodeCard() {
-        return RANKS[this.cardrank];
+        return RANKS[this.cardrank];  // by accessing the RANKS array with cardrank as index you get the string corresponding to what card it is
     }
     
     public String printCard() {
@@ -54,11 +54,11 @@ class Deck {
     Card[] cards;
 
     public Deck() {
-        this.cards= new Card[52];
+        this.cards= new Card[52]; // creating an array of Card objects.
         int i = 0;
         for(Suit s : Suit.values()) {
             for(int rank = 1; rank<= 13; rank++){
-                cards[i] = new Card(rank,s);
+                cards[i] = new Card(rank,s);  // filling the array with every card
                 i++;
             }
         }
@@ -66,7 +66,7 @@ class Deck {
 
     public void print() {
         for(int i = 0; i < this.cards.length; i++) {
-            this.cards[i].printCard();
+            this.cards[i].printCard();              // this is how you would print all cards, but im not using it at the moment
         }
      }
 }

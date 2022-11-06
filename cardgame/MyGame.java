@@ -2,11 +2,16 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+// Game logic class
 class Game {
-    String playerName;
+    String playerName; 
     Deck deck;
-    boolean[] played;
-    int score = 0;
+    /* this boolean array has 52 elements, one for each card, you switch the played[cardIndex] to true to signalize that that card can't be used again.
+        It would also be possible to use a linked list to store the played indexes, but it would take longer to search, its better to use an array when we know the size of the data.
+    */
+    boolean[] played; 
+    // keeping count of the score, contrary to traditional blackjack, in lackbjack the score of each card is equal to the card's rank (see the Card class for more information).
+    int score = 0; 
 
 
     public Game(String player) {
@@ -16,6 +21,7 @@ class Game {
         this.played = new boolean[52];
     }
 
+    // generate a new random index from 0 to 51 repeatedly until you get the index of an unplayed card.
     private Card getRandomCard() {
         Random rand = new Random();
         int randomIndex = rand.nextInt(deck.cards.length-1);
@@ -24,6 +30,7 @@ class Game {
             randomIndex = rand.nextInt(deck.cards.length);
         } 
 
+        // flip the card index to signalize that it has been played
         this.played[randomIndex] = true;
         return deck.cards[randomIndex];
     }
@@ -32,6 +39,7 @@ class Game {
         return this.score += card.getRank();
     }
 
+    //ask for a new round
     private boolean newRound() {
         Scanner scan = new Scanner(System.in);
             System.out.println("Do you want another Card?(answer y for yes or n for no, default is no)");
